@@ -5,6 +5,7 @@ import FavBadge from './FavBadge';
 import '../styles/TopicList.scss';
 
 const TopicList = (props) => {
+  console.log(props);
   const topicListArray = props.topics.map((topic) => {
     return (
       <TopicListItem
@@ -20,7 +21,9 @@ const TopicList = (props) => {
       {/* Insert React */}
       {topicListArray}
       <div className='topic-list__item'>
-        <FavBadge/>
+        <FavBadge
+          isFavPhotoExist={props.favorites.length > 0}
+        />
       </div>
     </div>
   );

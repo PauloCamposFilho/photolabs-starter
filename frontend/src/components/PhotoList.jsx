@@ -7,10 +7,12 @@ const PhotoList = (props) => {
   const photoList = props.photos.map((photo) => {    
     return (
       <PhotoListItem
+        id={photo.id}
         key={photo.id}
         imageSource={photo.urls}
         location={photo.location}
         photographer={photo.user}
+        setFavoritePhotos={props.setFavoritePhotos}
       />
     );
   });

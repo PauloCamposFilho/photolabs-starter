@@ -9,6 +9,7 @@ const TopNavigationBar = (props) => {
       <span className="top-nav-bar__logo">PhotoLabs</span>
       <TopicList
         topics={props.topics}
+        favorites={props.favorites}
       />
     </div>
   )
