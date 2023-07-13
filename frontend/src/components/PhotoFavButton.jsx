@@ -8,15 +8,11 @@ function PhotoFavButton(props) {
 
   const updateFavoritePhotos = (isFavorite) => {
     props.setFavoritePhotos((prevFavPhotos) => {
-      let newFavPhotos = [...prevFavPhotos];
+      const { id } = props.photo;
       if (isFavorite) {
-        newFavPhotos.push(props.photo);
-      } else {
-        newFavPhotos = newFavPhotos.filter((photo) => {
-          return photo.id !== props.photo.id;
-        });
+        return [...prevFavPhotos, props.photo];
       }
-      return newFavPhotos;
+      return prevFavPhotos.filter((photo) => photo.id !== id);
     })
   };
 
@@ -28,7 +24,7 @@ function PhotoFavButton(props) {
     });
     updateFavoritePhotos(!isFav);
   };
-  
+
   return (
     <div onClick={toggleFavorite} className="photo-list__fav-icon">
       <div className="photo-list__fav-icon-svg">
