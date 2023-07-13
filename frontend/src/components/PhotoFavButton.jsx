@@ -17,12 +17,11 @@ function PhotoFavButton(props) {
   };
 
   const toggleFavorite = () => {
-    let _isFav;
     setFav((prev) => {
-      _isFav = prev;
-      return !prev;
+      const isFav = !prev;
+      updateFavoritePhotos(isFav);
+      return isFav;
     });
-    updateFavoritePhotos(!isFav);
   };
 
   return (
