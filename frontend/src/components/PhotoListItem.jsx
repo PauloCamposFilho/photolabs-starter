@@ -8,7 +8,7 @@ const PhotoListItem = (props) => {
   return (
     <div className='photo-list__item'>
       <PhotoFavButton
-        setFavoritePhotos={props.setFavoritePhotos}
+        updateFavoritePhotos={props.updateFavoritePhotos}
         photo={props}
       />
       <img className='photo-list__image' src={ props.imageSource.regular } />

@@ -12,7 +12,7 @@ const PhotoList = (props) => {
         imageSource={photo.urls}
         location={photo.location}
         photographer={photo.user}
-        setFavoritePhotos={props.setFavoritePhotos}
+        updateFavoritePhotos={props.updateFavoritePhotos}
       />
     );
   });
