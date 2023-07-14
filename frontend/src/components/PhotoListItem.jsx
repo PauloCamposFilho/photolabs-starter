@@ -11,7 +11,7 @@ const PhotoListItem = (props) => {
         updateFavoritePhotos={props.updateFavoritePhotos}
         photo={props}
       />
-      <img className='photo-list__image' src={ props.imageSource.regular } />
+      <img onClick={() => { props.updateModalInformation(props.photo) }} className='photo-list__image' src={ props.imageSource.regular } />
       <div className='photo-list__user-details'>
         <img className='photo-list__user-profile' src={ props.photographer.profile } />
         <div className='photo-list__user-info'>

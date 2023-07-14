@@ -26,6 +26,7 @@ export const HomeRoute = (props) => {
       <PhotoList
         photos={props.photos}
         updateFavoritePhotos={updateFavoritePhotos}
+        updateModalInformation={props.updateModalInformation}
       />
     </div>
   );
