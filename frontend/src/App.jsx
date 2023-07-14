@@ -22,7 +22,11 @@ const App = () => {
       updateModalInformation={updateModalInformation}
       topics={topics}
     />
-    { modalInformation?.id && <PhotoDetailsModal updateModalInformation={updateModalInformation}/> }
+    { modalInformation?.id &&
+      <PhotoDetailsModal
+        updateModalInformation={updateModalInformation}
+        photoInformation={modalInformation}
+      /> }
   </div>
   );
 }

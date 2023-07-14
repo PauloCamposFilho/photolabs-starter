@@ -2,7 +2,9 @@ import React from 'react';
 
 import '../styles/PhotoDetailsModal.scss'
 
-export const PhotoDetailsModal = (props) => (
+export const PhotoDetailsModal = (props) => {
+  console.log("the image details", props.photoInformation);
+  return (
   <div className='photo-details-modal'>
     <button onClick={() => { props.updateModalInformation(); }} className='photo-details-modal--close-button'>
       <svg width="24" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -18,6 +20,6 @@ export const PhotoDetailsModal = (props) => (
       </svg>
     </button>
   </div>
-)
-
+  );
+}
 export default PhotoDetailsModal;
