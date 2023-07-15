@@ -5,7 +5,6 @@ import FavBadge from './FavBadge';
 import '../styles/TopicList.scss';
 
 const TopicList = (props) => {
-  console.log(props);
   const topicListArray = props.topics.map((topic) => {
     return (
       <TopicListItem

@@ -4,6 +4,8 @@ import PhotoListItem from './PhotoListItem';
 import '../styles/PhotoList.scss';
 
 const PhotoList = (props) => {
+  console.log("I'm lost.");
+  console.log(props);
   const photoList = props.photos.map((photo) => {    
     return (
       <PhotoListItem
@@ -15,6 +17,7 @@ const PhotoList = (props) => {
         photographer={photo.user}
         updateFavoritePhotos={props.updateFavoritePhotos}
         updateModalInformation={props.updateModalInformation}
+        canAffectModal={props.canAffectModal}
       />
     );
   });

@@ -2,6 +2,7 @@ import React from 'react';
 import PhotoFavButton from './PhotoFavButton';
 
 import '../styles/PhotoListItem.scss';
+import PhotographerDetails from './PhotographerDetails';
 
 const PhotoListItem = (props) => {
   /* Insert React */
@@ -11,15 +12,15 @@ const PhotoListItem = (props) => {
         updateFavoritePhotos={props.updateFavoritePhotos}
         photo={props}
       />
-      <img onClick={() => { props.updateModalInformation(props.photo) }} className='photo-list__image' src={ props.imageSource.regular } />
-      <div className='photo-list__user-details'>
-        <img className='photo-list__user-profile' src={ props.photographer.profile } />
-        <div className='photo-list__user-info'>
-          <span style={{ display: "block" }}>{ props.photographer.name }</span>
-          {/* <br /> */}
-          <span className='photo-list__user-location'>{ `${props.location.city}, ${props.location.country}` }</span>
-        </div>
-      </div>
+      <img onClick={() => {
+          if (props.canAffectModal) {
+            props.updateModalInformation(props.photo);
+          }
+        }} className='photo-list__image' src={ props.imageSource.regular } />
+      {/* <PhotographerDetails
+        photographer={props.photographer}
+        location={props.location}
+      /> */}
     </div>
   );
 }
