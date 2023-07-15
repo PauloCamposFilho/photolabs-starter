@@ -30,8 +30,10 @@ export const PhotoDetailsModal = (props) => {
       <div className=''>
         <PhotoList
           photos={props.photoInformation.similar_photos}
+          favorites={props.favorites}
           updateFavoritePhotos={props.updateFavoritePhotos}
           updateModalInformation={props.updateModalInformation}
+          canAffectModal={false}
         />
       </div>
     {/* </div> */}

@@ -4,11 +4,10 @@ import PhotoListItem from './PhotoListItem';
 import '../styles/PhotoList.scss';
 
 const PhotoList = (props) => {
-  console.log("I'm lost.");
-  console.log(props);
-  const photoList = props.photos.map((photo) => {    
+  const photoList = props.photos.map((photo) => {
     return (
       <PhotoListItem
+        isFavorite={props.favorites?.filter((favorite) => { return favorite.id === photo.id }).length > 0}
         photo={photo}
         id={photo.id}
         key={photo.id}

@@ -2,7 +2,6 @@ import React from 'react';
 import PhotoFavButton from './PhotoFavButton';
 
 import '../styles/PhotoListItem.scss';
-import PhotographerDetails from './PhotographerDetails';
 
 const PhotoListItem = (props) => {
   /* Insert React */
@@ -17,10 +16,6 @@ const PhotoListItem = (props) => {
             props.updateModalInformation(props.photo);
           }
         }} className='photo-list__image' src={ props.imageSource.regular } />
-      {/* <PhotographerDetails
-        photographer={props.photographer}
-        location={props.location}
-      /> */}
     </div>
   );
 }

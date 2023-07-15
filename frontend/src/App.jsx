@@ -10,19 +10,19 @@ const App = () => {
   const [modalInformation, setModalInformation] = useState({});
   const [favoritePhotos, setFavoritePhotos] = useState([]);
 
-  console.log("photos", photos);
-
-  const updateFavoritePhotos = (isFavorite, photo) => {
+  const updateFavoritePhotos = (photo) => {
     setFavoritePhotos((prevFavPhotos) => {
-      if (isFavorite) {
+      const isFavorite = prevFavPhotos?.filter((favPhoto) => favPhoto.id === photo.id).length > 0;
+      // if it isnt favorite, make it a favorite.
+      if (!isFavorite) {
         return [...prevFavPhotos, photo];
       }
+      // otherwise get rid of it.
       return prevFavPhotos.filter((_photo) => _photo.id !== photo.id);
     })
   };
   const updateModalInformation = (photo) => {
     if (photo?.id) {
-      console.log("the info:", photo);
       return setModalInformation(photo);
     }
     return setModalInformation({});
