@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import HomeRoute from './routes/HomeRoute';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
 import useApplicationData from './hooks/useApplicationData';
-import photos from './mocks/photos';
-import topics from './mocks/topics';
 import './App.scss';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
 
   const { state, updateFavoritePhotos, updateModalInformation } = useApplicationData();
-  const { modalInformation, favoritePhotos } = state;
+  const { modalInformation, favoritePhotos, photos, topics } = state;
 
   return (
   <div className="App">
