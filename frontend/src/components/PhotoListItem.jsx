@@ -2,6 +2,7 @@ import React from 'react';
 import PhotoFavButton from './PhotoFavButton';
 
 import '../styles/PhotoListItem.scss';
+import PhotographerDetails from './PhotographerDetails';
 
 const PhotoListItem = (props) => {
   /* Insert React */

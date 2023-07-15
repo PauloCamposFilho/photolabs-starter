@@ -2,9 +2,12 @@ import React from 'react';
 
 import '../styles/PhotoDetailsModal.scss'
 import PhotoList from '../components/PhotoList';
+import PhotoFavButton from '../components/PhotoFavButton';
+import PhotographerDetails from '../components/PhotographerDetails';
 
 export const PhotoDetailsModal = (props) => {
   console.log("the image details", props.photoInformation);
+  const _isFavorite = props.favorites?.filter((favorite) => { return favorite.id === props.photoInformation.id }).length > 0;
   return (
   <div className='photo-details-modal'>
     {/* <div className='photo-details-modal__top-bar'> */}
@@ -22,7 +25,17 @@ export const PhotoDetailsModal = (props) => {
         </svg>
       </button>
       <div className='photo-details-modal__images'>
+        <PhotoFavButton
+          updateFavoritePhotos={props.updateFavoritePhotos}
+          photo={{...props.photoInformation, isFavorite: _isFavorite}}
+        />
         <img className='photo-details-modal__image' src={props.photoInformation.urls.full} />
+        <div className='photo-details-modal__photographer-details'>
+          <PhotographerDetails
+          photographer={props.photoInformation.user}
+          location={props.photoInformation.location}
+          />
+        </div>
         <div className='photo-details-modal__header'>
           <span>Similar photos</span>
         </div>

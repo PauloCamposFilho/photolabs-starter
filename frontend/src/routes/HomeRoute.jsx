@@ -1,7 +1,6 @@
 import React from 'react';
 import TopNavigationBar from '../components/TopNavigationBar';
 import PhotoList from '../components/PhotoList'
-import { useState } from 'react';
 
 import '../styles/HomeRoute.scss';
 
