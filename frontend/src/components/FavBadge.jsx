@@ -4,7 +4,7 @@ import FavIcon from './FavIcon';
 
 import '../styles/FavBadge.scss';
 
-export const FavBadge = (props) => {
+export const FavBadge = () => {
   const { state, updateStatePhotos } = useContext(ApplicationContext);
   const { favoritePhotos } = state;
   const clickHandler = () => {

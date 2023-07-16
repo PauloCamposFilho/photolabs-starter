@@ -30,7 +30,7 @@ export const PhotoDetailsModal = () => {
       </button>
       <div className='photo-details-modal__images'>
         <PhotoFavButton
-          photo={{...state.modalInformation, isFavorite: _isFavorite}}
+          photo={{ ...state.modalInformation, photo: { ...state.modalInformation } , isFavorite: _isFavorite }}
         />
         <img className='photo-details-modal__image' src={state.modalInformation.urls.full} />
         <div className='photo-details-modal__photographer-details'>
