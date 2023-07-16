@@ -1,17 +1,27 @@
 import { useState, useReducer } from 'react';
-import photos from '../mocks/photos';
-import topics from '../mocks/topics';
+// import photos from '../mocks/photos';
+// import topics from '../mocks/topics';
 
+// initial state for photos and topics are now both empty arrays. no more mock data.
+// states are filled in with API data on the first render of the App component through
+// the useEffect hook.
 const initialState = {
-  photos,
-  topics,
+  photos: [],
+  topics: [],
   favoritePhotos: [],   // empty to start, becomes array with N photo objects.
   modalInformation: {}  // empty to start, expects one photo object.
 }
 
 export const ACTIONS = {
   UPDATE_FAVORITE_PHOTOS: 'UPDATE_FAVORITE_PHOTOS',
-  UPDATE_MODAL_INFORMATION: 'UPDATE_MODAL_INFORMATION'
+  UPDATE_MODAL_INFORMATION: 'UPDATE_MODAL_INFORMATION',
+  UPDATE_STATE_PHOTOS: 'UPDATE_STATE_PHOTOS',
+  UPDATE_STATE_TOPICS: 'UPDATE_STATE_TOPICS'
+}
+
+export const API_ENDPOINTS = {
+  GET_PHOTOS: '/api/photos',
+  GET_TOPICS: '/api/topics'
 }
 
 const reducer = (state, action) => {
@@ -39,11 +49,34 @@ const reducer = (state, action) => {
           ...state,
           modalInformation: action.payload
       };
+      case ACTIONS.UPDATE_STATE_PHOTOS:
+        return {
+          ...state,
+          photos: action.payload
+        };
+      case ACTIONS.UPDATE_STATE_TOPICS:
+        return {
+          ...state,
+          topics: action.payload
+        }
       default:
         return state;
   }
 };
 
+// helper function to fetch API data.
+
+const fetchData = async (url, isJSONResponse = true) => {
+  const requestResponse = await fetch(url);
+  if (isJSONResponse) {
+    const jsonParsed = await requestResponse.json();
+    console.log(jsonParsed);
+    return jsonParsed;
+  }
+  return requestResponse;
+}
+
+// custom hook to condense application state handling.
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -59,10 +92,21 @@ const useApplicationData = () => {
     }
   };
 
+  const updateStatePhotos = (photos) => {
+    dispatch({ type: ACTIONS.UPDATE_STATE_PHOTOS, payload: photos });
+  };
+
+  const updateStateTopics = (topics) => {
+    dispatch({ type: ACTIONS.UPDATE_STATE_TOPICS, payload: topics });
+  };
+
   return {
     state,
     updateFavoritePhotos,
-    updateModalInformation
+    updateModalInformation,
+    updateStatePhotos,
+    updateStateTopics,
+    fetchData
    };
 
 };
