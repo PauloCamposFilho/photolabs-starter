@@ -11,6 +11,7 @@ export const HomeRoute = (props) => {
         topics={props.topics}
         favorites={props.favorites}
         updateStatePhotosByTopicID={props.updateStatePhotosByTopicID}
+        updateStatePhotos={props.updateStatePhotos}
       />
       <PhotoList
         photos={props.photos}

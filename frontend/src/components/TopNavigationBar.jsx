@@ -11,6 +11,7 @@ const TopNavigationBar = (props) => {
         topics={props.topics}
         favorites={props.favorites}
         updateStatePhotosByTopicID={props.updateStatePhotosByTopicID}
+        updateStatePhotos={props.updateStatePhotos}
       />
     </div>
   )

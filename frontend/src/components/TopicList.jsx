@@ -16,6 +16,15 @@ const TopicList = (props) => {
        />
     );
   });
+  // Always create an "all" category so user can see ALL photos once more.
+  topicListArray.unshift(
+    <TopicListItem
+        onClick={props.updateStatePhotosByTopicID}
+        key={'no-topic'}
+        id={''}
+        label={'All'}
+    />
+  );
 
   return (
     <div className="top-nav-bar__topic-list">
@@ -24,6 +33,8 @@ const TopicList = (props) => {
       <div className='topic-list__item'>
         <FavBadge
           isFavPhotoExist={props.favorites.length > 0}
+          favorites={props.favorites}
+          onClick={props.updateStatePhotos}
         />
       </div>
     </div>

@@ -37,6 +37,7 @@ const App = () => {
       photos={photos}
       updateModalInformation={updateModalInformation}
       updateFavoritePhotos={updateFavoritePhotos}
+      updateStatePhotos={updateStatePhotos}
       updateStatePhotosByTopicID={updateStatePhotosByTopicID}
       favorites={favoritePhotos}
       topics={topics}

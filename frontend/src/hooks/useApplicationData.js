@@ -101,7 +101,9 @@ const useApplicationData = () => {
   // "overload" method for updateStatePhotos with topicId, might refactor it into the other function with optional param.
   const updateStatePhotosByTopicID = async (topicId) => {
     try {
-      const _photos = await fetchData(`${API_ENDPOINTS.GET_PHOTOS_BY_TOPICID}${topicId}`);
+      // if no topicId is passed, get all photos instead.
+      let _apiURL = topicId ? `${API_ENDPOINTS.GET_PHOTOS_BY_TOPICID}${topicId}` : API_ENDPOINTS.GET_PHOTOS;
+      const _photos = await fetchData(_apiURL);
       updateStatePhotos(_photos);
     } catch(err) {
       console.log(err);
