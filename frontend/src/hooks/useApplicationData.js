@@ -16,12 +16,14 @@ export const ACTIONS = {
   UPDATE_FAVORITE_PHOTOS: 'UPDATE_FAVORITE_PHOTOS',
   UPDATE_MODAL_INFORMATION: 'UPDATE_MODAL_INFORMATION',
   UPDATE_STATE_PHOTOS: 'UPDATE_STATE_PHOTOS',
-  UPDATE_STATE_TOPICS: 'UPDATE_STATE_TOPICS'
+  UPDATE_STATE_PHOTOS_BY_TOPICID: 'UPDATE_STATE_PHOTOS_BY_TOPICID',
+  UPDATE_STATE_TOPICS: 'UPDATE_STATE_TOPICS',
 }
 
 export const API_ENDPOINTS = {
   GET_PHOTOS: '/api/photos',
-  GET_TOPICS: '/api/topics'
+  GET_TOPICS: '/api/topics',
+  GET_PHOTOS_BY_TOPICID: '/api/topics/photos/' // id needs to passed at the end.
 }
 
 const reducer = (state, action) => {
@@ -96,6 +98,16 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.UPDATE_STATE_PHOTOS, payload: photos });
   };
 
+  // "overload" method for updateStatePhotos with topicId, might refactor it into the other function with optional param.
+  const updateStatePhotosByTopicID = async (topicId) => {
+    try {
+      const _photos = await fetchData(`${API_ENDPOINTS.GET_PHOTOS_BY_TOPICID}${topicId}`);
+      updateStatePhotos(_photos);
+    } catch(err) {
+      console.log(err);
+    }
+  };
+
   const updateStateTopics = (topics) => {
     dispatch({ type: ACTIONS.UPDATE_STATE_TOPICS, payload: topics });
   };
@@ -105,6 +117,7 @@ const useApplicationData = () => {
     updateFavoritePhotos,
     updateModalInformation,
     updateStatePhotos,
+    updateStatePhotosByTopicID,
     updateStateTopics,
     fetchData
    };

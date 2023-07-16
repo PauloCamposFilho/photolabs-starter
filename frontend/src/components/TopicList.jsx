@@ -8,6 +8,8 @@ const TopicList = (props) => {
   const topicListArray = props.topics.map((topic) => {
     return (
       <TopicListItem
+        onClick={props.updateStatePhotosByTopicID}
+        id={topic.id}
         key={topic.id}
         slug={topic.slug}
         label={topic.title}

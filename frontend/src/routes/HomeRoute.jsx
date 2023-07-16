@@ -10,6 +10,7 @@ export const HomeRoute = (props) => {
       <TopNavigationBar
         topics={props.topics}
         favorites={props.favorites}
+        updateStatePhotosByTopicID={props.updateStatePhotosByTopicID}
       />
       <PhotoList
         photos={props.photos}

@@ -7,8 +7,16 @@ import './App.scss';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
+  const {
+    state,
+    updateFavoritePhotos,
+    updateModalInformation,
+    updateStatePhotos,
+    updateStatePhotosByTopicID,
+    updateStateTopics,
+    fetchData
+  } = useApplicationData();
 
-  const { state, updateFavoritePhotos, updateModalInformation, updateStatePhotos, updateStateTopics, fetchData } = useApplicationData();
   const { modalInformation, favoritePhotos, photos, topics } = state;
 
   useEffect(() => {
@@ -16,7 +24,11 @@ const App = () => {
       updateStatePhotos(await fetchData(API_ENDPOINTS.GET_PHOTOS));
       updateStateTopics(await fetchData(API_ENDPOINTS.GET_TOPICS));
     };
-    _updatePhotoTopicStates();
+    try {
+      _updatePhotoTopicStates();
+    } catch(error) {
+      console.log(error);
+    }
   }, []);
 
   return (
@@ -25,6 +37,7 @@ const App = () => {
       photos={photos}
       updateModalInformation={updateModalInformation}
       updateFavoritePhotos={updateFavoritePhotos}
+      updateStatePhotosByTopicID={updateStatePhotosByTopicID}
       favorites={favoritePhotos}
       topics={topics}
     />

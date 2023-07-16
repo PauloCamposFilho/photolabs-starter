@@ -10,6 +10,7 @@ const TopNavigationBar = (props) => {
       <TopicList
         topics={props.topics}
         favorites={props.favorites}
+        updateStatePhotosByTopicID={props.updateStatePhotosByTopicID}
       />
     </div>
   )
