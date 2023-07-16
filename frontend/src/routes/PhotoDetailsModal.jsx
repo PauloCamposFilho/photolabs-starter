@@ -1,17 +1,21 @@
-import React from 'react';
-
-import '../styles/PhotoDetailsModal.scss'
+import React, { useContext } from 'react';
 import PhotoList from '../components/PhotoList';
 import PhotoFavButton from '../components/PhotoFavButton';
 import PhotographerDetails from '../components/PhotographerDetails';
+import ApplicationContext from '../contexts/ApplicationContext';
+import '../styles/PhotoDetailsModal.scss'
 
-export const PhotoDetailsModal = (props) => {
-  console.log("the image details", props.photoInformation);
-  const _isFavorite = props.favorites?.filter((favorite) => { return favorite.id === props.photoInformation.id }).length > 0;
+export const PhotoDetailsModal = () => {
+  const { state, updateModalInformation } = useContext(ApplicationContext);
+  const _isFavorite = state.favoritePhotos?.filter((favorite) => { return favorite.id === state.modalInformation.id }).length > 0;
+
+  const clickHandler = () => {
+    updateModalInformation();
+  };
+
   return (
   <div className='photo-details-modal'>
-    {/* <div className='photo-details-modal__top-bar'> */}
-      <button onClick={() => { props.updateModalInformation(); }} className='photo-details-modal__close-button'>
+      <button onClick={ clickHandler } className='photo-details-modal__close-button'>
         <svg width="24" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clipPath="url(#clip0_428_287)">
             <path d="M14.0625 3.9375L3.9375 14.0625" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
@@ -26,14 +30,13 @@ export const PhotoDetailsModal = (props) => {
       </button>
       <div className='photo-details-modal__images'>
         <PhotoFavButton
-          updateFavoritePhotos={props.updateFavoritePhotos}
-          photo={{...props.photoInformation, isFavorite: _isFavorite}}
+          photo={{...state.modalInformation, isFavorite: _isFavorite}}
         />
-        <img className='photo-details-modal__image' src={props.photoInformation.urls.full} />
+        <img className='photo-details-modal__image' src={state.modalInformation.urls.full} />
         <div className='photo-details-modal__photographer-details'>
           <PhotographerDetails
-          photographer={props.photoInformation.user}
-          location={props.photoInformation.location}
+            photographer={state.modalInformation.user}
+            location={state.modalInformation.location}
           />
         </div>
         <div className='photo-details-modal__header'>
@@ -42,10 +45,7 @@ export const PhotoDetailsModal = (props) => {
       </div>
       <div className=''>
         <PhotoList
-          photos={props.photoInformation.similar_photos}
-          favorites={props.favorites}
-          updateFavoritePhotos={props.updateFavoritePhotos}
-          updateModalInformation={props.updateModalInformation}
+          photos={state.modalInformation.similar_photos}
           canAffectModal={false}
         />
       </div>

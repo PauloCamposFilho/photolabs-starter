@@ -1,57 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import HomeRoute from './routes/HomeRoute';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
-import useApplicationData from './hooks/useApplicationData';
-import { API_ENDPOINTS } from './hooks/useApplicationData';
+import useApplicationData, { API_ENDPOINTS } from './hooks/useApplicationData';
+import ApplicationContext from './contexts/ApplicationContext';
 import './App.scss';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const {
-    state,
-    updateFavoritePhotos,
-    updateModalInformation,
-    updateStatePhotos,
-    updateStatePhotosByTopicID,
-    updateStateTopics,
-    fetchData
-  } = useApplicationData();
-
-  const { modalInformation, favoritePhotos, photos, topics } = state;
+  const { state, ...actions } = useApplicationData();
+  const { modalInformation } = state;
 
   useEffect(() => {
-    const _updatePhotoTopicStates = async () => {
-      updateStatePhotos(await fetchData(API_ENDPOINTS.GET_PHOTOS));
-      updateStateTopics(await fetchData(API_ENDPOINTS.GET_TOPICS));
+    const updatePhotoTopicStates = async () => {
+      try {
+        actions.updateStatePhotos(await actions.fetchData(API_ENDPOINTS.GET_PHOTOS));
+        actions.updateStateTopics(await actions.fetchData(API_ENDPOINTS.GET_TOPICS));
+      } catch (error) {
+        console.log(error);
+      }
     };
-    try {
-      _updatePhotoTopicStates();
-    } catch(error) {
-      console.log(error);
-    }
+    updatePhotoTopicStates();
   }, []);
 
   return (
-  <div className="App">
-    <HomeRoute
-      photos={photos}
-      updateModalInformation={updateModalInformation}
-      updateFavoritePhotos={updateFavoritePhotos}
-      updateStatePhotos={updateStatePhotos}
-      updateStatePhotosByTopicID={updateStatePhotosByTopicID}
-      favorites={favoritePhotos}
-      topics={topics}
-    />
-    { modalInformation?.id &&
-      <PhotoDetailsModal
-        updateModalInformation={updateModalInformation}
-        updateFavoritePhotos={updateFavoritePhotos}
-        favorites={favoritePhotos}
-        photoInformation={modalInformation}
-      /> }
-  </div>
+    <ApplicationContext.Provider value={{ state, ...actions }}>
+      <div className="App">
+        <HomeRoute/>
+        { modalInformation?.id && <PhotoDetailsModal/> }
+      </div>
+    </ApplicationContext.Provider>
   );
 }
 
 
-export default App
+export default App;

@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ApplicationContext from '../contexts/ApplicationContext';
 import FavIcon from './FavIcon';
 
 import '../styles/FavBadge.scss';
 
 export const FavBadge = (props) => {
+  const { state, updateStatePhotos } = useContext(ApplicationContext);
+  const { favoritePhotos } = state;
   const clickHandler = () => {
-    if (!props.isFavPhotoExist) {
-      console.log("No favorite photo. Do nothing!");
+    // no favorite photos? do nothing.
+    if (favoritePhotos.length === 0) {
       return;
     }
-    const _mappedFavorites = props.favorites.map((favorite) => favorite.photo); // extract just the photo objects.
-    props.onClick(_mappedFavorites);
+    // otherwise, lets update photo state with favorited photos.
+    const _mappedFavorites = favoritePhotos.map((favorite) => favorite.photo); // extract just the photo objects.
+    updateStatePhotos(_mappedFavorites);
   }
   return (
     <div onClick={ clickHandler } className='fav-badge'>
-      <FavIcon width={20} height={17} fill="#C80000" displayAlert={props.isFavPhotoExist}/>
+      <FavIcon width={20} height={17} fill="#C80000" displayAlert={favoritePhotos.length > 0}/>
     </div>
   )
 };

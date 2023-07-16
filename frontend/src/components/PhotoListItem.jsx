@@ -1,24 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ApplicationContext from '../contexts/ApplicationContext';
 import PhotoFavButton from './PhotoFavButton';
 
 import '../styles/PhotoListItem.scss';
-import PhotographerDetails from './PhotographerDetails';
 
 const PhotoListItem = (props) => {
+  const { updateModalInformation } = useContext(ApplicationContext);
+  const clickHandler = () => {
+    if (props.canAffectModal) {
+      updateModalInformation(props.photo);
+    }
+  };
   /* Insert React */
   return (
     <div className='photo-list__item'>
-      <PhotoFavButton
-        updateFavoritePhotos={props.updateFavoritePhotos}
-        photo={props}
-      />
-      <img onClick={() => {
-          if (props.canAffectModal) {
-            props.updateModalInformation(props.photo);
-          }
-        }} className='photo-list__image' src={ props.imageSource.regular } />
+      <PhotoFavButton photo={props}/>
+      <img onClick={ clickHandler } className='photo-list__image' src={ props.photo.urls.regular } />
     </div>
   );
 }
 
-export default PhotoListItem
+export default PhotoListItem;

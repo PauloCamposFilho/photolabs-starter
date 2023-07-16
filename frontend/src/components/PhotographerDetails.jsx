@@ -5,7 +5,7 @@ const PhotographerDetails = (props) => {
     <div className='photo-list__user-details'>
         <img className='photo-list__user-profile' src={ props.photographer.profile } />
         <div className='photo-list__user-info'>
-          <span style={{ display: "block" }}>{ props.photographer.name }</span>          
+          <span style={{ display: "block" }}>{ props.photographer.name }</span>
           <span className='photo-list__user-location'>{ `${props.location.city}, ${props.location.country}` }</span>
         </div>
       </div>

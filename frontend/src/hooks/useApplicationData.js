@@ -1,6 +1,4 @@
-import { useState, useReducer } from 'react';
-// import photos from '../mocks/photos';
-// import topics from '../mocks/topics';
+import { useReducer } from 'react';
 
 // initial state for photos and topics are now both empty arrays. no more mock data.
 // states are filled in with API data on the first render of the App component through
