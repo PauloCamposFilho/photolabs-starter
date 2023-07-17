@@ -19,6 +19,9 @@ PGDATABASE=photolabs_development
 PGPASSWORD=labber
 PGPORT=5432
 ```
+>Student's note: Be advised that by default, the backend project will run on port 8001 (if no port is specified on the .env file), however, the frontend project, for development purposes, has a "proxy" entry on its [package.json](../frontend/package.json) file that ***will need*** manually updating if you choose to run this backend project on a different port.
+
+&nbsp;
 
 ## Seeding
 
