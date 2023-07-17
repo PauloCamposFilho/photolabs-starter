@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import HomeRoute from './routes/HomeRoute';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
-import useApplicationData, { API_ENDPOINTS } from './hooks/useApplicationData';
+import useApplicationData from './hooks/useApplicationData';
+import API_ENDPOINTS from './constants/API_ENDPOINTS';
 import ApplicationContext from './contexts/ApplicationContext';
+// import API_ENDPOINTS from './constants/API_ENDPOINTS';
 import './App.scss';
 
-// Note: Rendering a single component to build components in isolation
 const App = () => {
   const { state, ...actions } = useApplicationData();
   const { modalInformation } = state;
