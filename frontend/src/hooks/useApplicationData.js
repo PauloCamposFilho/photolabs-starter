@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
 import ACTIONS from '../constants/ACTIONS';             // reducer action.type(s)
 import API_ENDPOINTS from '../constants/API_ENDPOINTS'; // API Endpoints for fetching photo/topic data.
 
@@ -105,6 +105,18 @@ const useApplicationData = () => {
   const updateStateTopics = (topics) => {
     dispatch({ type: ACTIONS.UPDATE_STATE_TOPICS, payload: topics });
   };
+
+  useEffect(() => {
+    const updatePhotoTopicStates = async () => {
+      try {
+        updateStatePhotos(await fetchData(API_ENDPOINTS.GET_PHOTOS));
+        updateStateTopics(await fetchData(API_ENDPOINTS.GET_TOPICS));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    updatePhotoTopicStates();
+  }, []);
 
   // return our state and functions for our app.
   return {
