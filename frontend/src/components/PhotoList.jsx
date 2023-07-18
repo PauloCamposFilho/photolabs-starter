@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
-import PhotoListItem from './PhotoListItem';
 import ApplicationContext from '../contexts/ApplicationContext';
+import PhotoListItem from './PhotoListItem';
 import '../styles/PhotoList.scss';
-
 
 const PhotoList = (props) => {
   const { state } = useContext(ApplicationContext);

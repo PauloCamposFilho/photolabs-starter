@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
+import ApplicationContext from '../contexts/ApplicationContext';
 import PhotoList from '../components/PhotoList';
 import PhotoFavButton from '../components/PhotoFavButton';
 import PhotographerDetails from '../components/PhotographerDetails';
-import ApplicationContext from '../contexts/ApplicationContext';
 import '../styles/PhotoDetailsModal.scss'
 
 export const PhotoDetailsModal = () => {

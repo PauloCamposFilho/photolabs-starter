@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import ApplicationContext from '../contexts/ApplicationContext';
 import PhotoFavButton from './PhotoFavButton';
-
 import '../styles/PhotoListItem.scss';
 
 const PhotoListItem = (props) => {

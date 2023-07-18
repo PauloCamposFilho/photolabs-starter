@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import HomeRoute from './routes/HomeRoute';
-import PhotoDetailsModal from './routes/PhotoDetailsModal';
+import ApplicationContext from './contexts/ApplicationContext';
 import useApplicationData from './hooks/useApplicationData';
 import API_ENDPOINTS from './constants/API_ENDPOINTS';
-import ApplicationContext from './contexts/ApplicationContext';
-// import API_ENDPOINTS from './constants/API_ENDPOINTS';
+import HomeRoute from './routes/HomeRoute';
+import PhotoDetailsModal from './routes/PhotoDetailsModal';
 import './App.scss';
 
 const App = () => {

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import ApplicationContext from '../contexts/ApplicationContext';
-
 import '../styles/TopicListItem.scss'
 
 const TopicListItem = (props) => {

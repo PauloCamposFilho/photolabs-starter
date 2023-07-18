@@ -1,7 +1,6 @@
 import React from 'react';
-
-import '../styles/TopNavigationBar.scss'
 import TopicList from './TopicList';
+import '../styles/TopNavigationBar.scss'
 
 const TopNavigationBar = () => {
   return (

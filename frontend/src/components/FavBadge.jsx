@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import ApplicationContext from '../contexts/ApplicationContext';
 import FavIcon from './FavIcon';
-
 import '../styles/FavBadge.scss';
 
 export const FavBadge = () => {

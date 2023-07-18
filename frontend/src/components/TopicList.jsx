@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import ApplicationContext from '../contexts/ApplicationContext';
 import TopicListItem from './TopicListItem';
 import FavBadge from './FavBadge';
-
 import '../styles/TopicList.scss';
 
 const TopicList = () => {
